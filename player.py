@@ -1,4 +1,8 @@
 class Player:
+    """
+    Represents a TFT player in the game.
+    """
+
     def __init__(self, name, shop=[0,0,0,0,0], level=2, xp=0, gold=0, hp=100, bench=[0,0,0,0,0,0,0,0,0], board=[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]], items=[0,0,0,0,0,0,0,0,0,0], isdead=False):
 
         self.name = name
