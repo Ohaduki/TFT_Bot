@@ -17,6 +17,15 @@ class Champion:
         self.level = level
         self.items = items
 
+    def champitems(self):
+        display = []
+        for item in self.items:
+            if type(item) != int:
+                display.append(item.name)
+            else:
+                display.append(0)
+        return display
+
 
 # 1 Cost Champs
 class Caitlyn(Champion):

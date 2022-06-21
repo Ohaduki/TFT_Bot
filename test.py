@@ -1,11 +1,12 @@
 from GameState import gamestate
 from player import Player
 from Champions import Caitlyn, BlitzCrank, GangPlank, Alistar, Silco
+from Items import BFSword, DeathBlade
 from Items import Item
 
 
 
-player1 = Player("player1", gold= 10000)
+player1 = Player("player1", gold= 10000, items = [BFSword(), BFSword(), 0, 0, 0, 0, 0, 0, 0, 0])
 player2 = Player("player2", gold= 0)
 player3 = Player("player3")
 player4 = Player("player4")
@@ -25,3 +26,7 @@ pool = {1: [Caitlyn() for i in range(29)],
 
 while True:
     gamestate(players, pool)
+
+
+
+

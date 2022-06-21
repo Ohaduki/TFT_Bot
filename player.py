@@ -17,16 +17,24 @@ class Player:
         self.isdead = isdead
 
     def status(self):
-        return f"Player: {self.name} Level: {self.level} XP: {self.xp} Gold: {self.gold} HP: {self.hp}\nShop: {self.shopdisplay()}\nBench: {self.benchstatus()}\nItems: {self.items}\nBoard\n{self.boardstatus()[0]}\n{self.boardstatus()[1]}\n{self.boardstatus()[2]}\n{self.boardstatus()[3]}"
+        return f"Player: {self.name} Level: {self.level} XP: {self.xp} Gold: {self.gold} HP: {self.hp}\nShop: {self.shopdisplay()}\nBench: {self.benchstatus()}\nItems: {self.itemstatus()}\nBoard\n{self.boardstatus()[0]}\n{self.boardstatus()[1]}\n{self.boardstatus()[2]}\n{self.boardstatus()[3]}"
 
 
 
+    def itemstatus(self):
+        display = []
+        for item in self.items:
+            if type(item) != int:
+                display.append(item.name)
+            else:
+                display.append(0)
+        return display
 
     def benchstatus(self):
         display = []
         for champ in self.bench:
             if type(champ) != int:
-                display.append((champ.name, champ.level))
+                display.append((champ.name, champ.level, champ.champitems()))
             else:
                 display.append(champ)
         return display
@@ -37,7 +45,7 @@ class Player:
             display = []
             for champ in row:
                 if type(champ) != int:
-                    display.append((champ.name, champ.level))
+                    display.append((champ.name, champ.level, champ.champitems()))
                 else:
                     display.append(champ)
             status.append(display)

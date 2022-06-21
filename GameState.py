@@ -173,56 +173,58 @@ def gamestate(players, pool):
     if currentaction == 6:
     # Put an item on a champ, item cap is 10
 
-        print(f"Your items:\n{currentplayer.items}")
+        print(f"Your items:\n{currentplayer.itemstatus()}")
 
         while True:
-            itemchoice = input("select an item\n")
-            if itemchoice.lower() == "cancel":
-                print("Action canceled")
-                return
-            else:
-                try:
-                    if currentplayer.items[int(itemchoice)] != 0:
-                        break
-                    else:
-                        print("Please enter a slot that contains an item")
-                except ValueError:
-                    print("Oops, please enter a number")
+            try:
+                iteminput = input("select an item:\n")
+                itemchoice = int(int(iteminput))-1
+                if currentplayer.items[int(itemchoice)] != 0:
+                    break
+                else:
+                    print("Please enter a slot that contains an item")
+
+            except ValueError:
+                if iteminput.lower() == "cancel":
+                    print("Action canceled")
+                    return
+                print("Oops, please enter a number")
 
         print("Select a champion to give this item to")
         champtogiveitem = champselect(currentplayer)
         if champtogiveitem[0] == "bench":
-            for item in currentplayer.bench[champtogiveitem[1]]:
-                if item == 0:
-                    item = currentplayer.items[itemchoice]
-                    print(f"{currentplayer.bench[champtogiveitem[1]]} has been given {currentplayer.items[itemchoice]}")
+            for i in range(10):
+                if currentplayer.bench[champtogiveitem[1]].items[i] == 0:
+                    currentplayer.bench[champtogiveitem[1]].items[i] = currentplayer.items[itemchoice]
+                    print(f"{currentplayer.bench[champtogiveitem[1]].name} has been given {currentplayer.items[itemchoice].name}")
                     currentplayer.items[itemchoice] = 0
                     return
 
 
-                if item.tier == 1:
-                    item = itemcombine(item, currentplayer.items[itemchoice])
-                    print(f"{currentplayer.bench[champtogiveitem[1]]} has been given {currentplayer.items[itemchoice]} to craft {item}")
+                if currentplayer.bench[champtogiveitem[1]].items[i].tier == 1:
+                    currentplayer.bench[champtogiveitem[1]].items[i] = itemcombine(currentplayer.bench[champtogiveitem[1]].items[i], currentplayer.items[itemchoice])
+                    print(f"{currentplayer.bench[champtogiveitem[1]]} has been given {currentplayer.items[itemchoice]} to craft {currentplayer.bench[champtogiveitem[1]].items[i]}")
                     currentplayer.items[itemchoice] = 0
                     return
             print("This Champion has a full inventory")
             return
 
         if champtogiveitem[0] == "board":
-            for item in currentplayer.board[champtogiveitem[1][0]][champtogiveitem[1][1]]:
-                if item == 0:
-                    item = currentplayer.items[itemchoice]
-                    print(f"{currentplayer.board[champtogiveitem[1][0]][champtogiveitem[1][1]]} has been given {currentplayer.items[itemchoice]}")
+            for i in range(10):
+                if currentplayer.board[champtogiveitem[1][0]][champtogiveitem[1][1]].items[i] == 0:
+                    currentplayer.board[champtogiveitem[1][0]][champtogiveitem[1][1]].items[i] = currentplayer.items[itemchoice]
+                    print(f"{currentplayer.board[champtogiveitem[1][0]][champtogiveitem[1][1]].name} has been given {currentplayer.items[itemchoice].name}")
                     currentplayer.items[itemchoice] = 0
                     return
 
-                if item.tier == 1:
-                    item = itemcombine(item, currentplayer.items[itemchoice])
+                if currentplayer.board[champtogiveitem[1][0]][champtogiveitem[1][1]].items[i].tier == 1:
+                    currentplayer.board[champtogiveitem[1][0]][champtogiveitem[1][1]].items[i] = itemcombine(currentplayer.board[champtogiveitem[1][0]][champtogiveitem[1][1]].items[i], currentplayer.items[itemchoice])
                     print(
-                        f"{currentplayer.board[champtogiveitem[1][0]][champtogiveitem[1][1]]} has been given {currentplayer.items[itemchoice]} to craft {item}")
+                        f"{currentplayer.board[champtogiveitem[1][0]][champtogiveitem[1][1]].name} has been given {currentplayer.items[itemchoice].name} to craft {currentplayer.board[champtogiveitem[1][0]][champtogiveitem[1][1]].items[i].name}")
                     currentplayer.items[itemchoice] = 0
                     return
             print("This Champion has a full inventory")
+            return
 
     if currentaction == 7:
         print(currentplayer.status())
