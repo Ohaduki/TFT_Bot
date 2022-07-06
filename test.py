@@ -1,8 +1,10 @@
-from GameState import gamestate
+"""from GameState import gamestate
 from player import Player
 from Champions import Caitlyn, BlitzCrank, GangPlank, Alistar, Silco
 from Items import BFSword, DeathBlade
 from Items import Item
+from PyGameClass import dist, Gamechamp
+from Battle import spawn, fightinground
 
 
 
@@ -28,5 +30,15 @@ while True:
     gamestate(players, pool)
 
 
+player1 = Player("player1", board = [[0,0,0,Caitlyn(),0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,Silco(),0,0],[0,0,0,0,0,0,0]])
+
+player2 = Player("player2", board = [[0,0,0,Caitlyn(),0,0,0],[0,0,0,BlitzCrank(),0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,GangPlank(),0,0]])
+
+test1 = spawn(player1, player2)[0]
+test2 = spawn(player1, player2)[1]
+
+
+
+print(fightinground(test1, test2))"""
 
 

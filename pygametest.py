@@ -8,7 +8,6 @@ pygame.init()
 size = width, height = 1000, 1000
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
-
 current_time = 0
 
 yellowimg = pygame.image.load('yellow_circle.png')

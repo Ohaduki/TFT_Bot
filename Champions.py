@@ -1,9 +1,9 @@
 class Champion:
-    def __init__(self, name, cost, health, mana, startingmana, armor, mr, damage, atkspd, crate, atkrange, origins, classes, level=1, items=[0,0,0]):
+    def __init__(self, name, cost, hp, mana, startingmana, armor, mr, damage, atkspd, crate, atkrange, origins, classes, level=1, items=[0,0,0]):
 
         self.name = name
         self.cost = cost
-        self.health = health
+        self.hp = hp
         self.mana = mana
         self.startingmana = startingmana
         self.armor = armor
@@ -11,7 +11,7 @@ class Champion:
         self.damage = damage
         self.atkspd = atkspd
         self.crate = crate
-        self.range = atkrange
+        self.atkrange = atkrange
         self.origins = origins
         self.classes = classes
         self.level = level
